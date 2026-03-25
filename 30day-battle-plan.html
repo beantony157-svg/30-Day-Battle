@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>30-Day Battle Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#08090f;--s1:#0d0f1a;--s2:#121523;--s3:#181c2e;
+  --border:rgba(255,255,255,0.055);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);
+  --text:#e8eaf6;--text2:#9da3c4;--text3:#5a607a;
+  --bio:#f43f5e;--bgs:#f59e0b;--rel:#a78bfa;--rev:#22d3ee;--green:#22c55e;
+  --r:14px;--r2:20px;--r3:28px;
+  --shadow-md:0 8px 32px rgba(0,0,0,0.5);--shadow-lg:0 20px 60px rgba(0,0,0,0.6);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.5;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");opacity:.6;}
+.amb{position:fixed;pointer-events:none;border-radius:50%;filter:blur(160px);z-index:0;}
+#a1{width:800px;height:800px;top:-350px;left:-280px;background:radial-gradient(circle,rgba(244,63,94,0.18),transparent 70%);}
+#a2{width:600px;height:600px;bottom:-250px;right:-200px;background:radial-gradient(circle,rgba(167,139,250,0.15),transparent 70%);}
+#a3{width:400px;height:400px;top:50%;left:40%;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent 70%);}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+
+/* ══ EXAM BANNER ══ */
+.exam-banner{
+  background:linear-gradient(135deg,#140810 0%,#0d0a18 50%,#090d18 100%);
+  border-bottom:1px solid rgba(244,63,94,0.22);
+  padding:24px 28px;
+  display:flex;align-items:center;justify-content:center;gap:36px;
+  position:relative;overflow:hidden;flex-wrap:wrap;
+}
+.exam-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 50% 100%,rgba(244,63,94,0.07),transparent 60%);pointer-events:none;}
+.exam-banner::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,63,94,0.5),rgba(167,139,250,0.4),transparent);}
+
+.eb-main{text-align:center;position:relative;z-index:1;}
+.eb-tag{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,63,94,0.75);margin-bottom:8px;}
+.eb-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--bio);animation:blink 1.6s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.eb-number{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,12vw,6.5rem);font-weight:900;line-height:.85;letter-spacing:-.05em;background:linear-gradient(120deg,var(--bio) 0%,#f97316 50%,var(--bgs) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.eb-days-label{font-family:'DM Mono',monospace;font-size:clamp(.7rem,2vw,1rem);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;}
+.eb-exam-date{font-size:.72rem;color:var(--text3);margin-top:6px;}
+.eb-exam-date strong{color:var(--text2);}
+
+.eb-vdiv{width:1px;height:90px;background:linear-gradient(to bottom,transparent,var(--border2),transparent);flex-shrink:0;}
+
+.eb-stats{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;min-width:200px;}
+.eb-stat-row{display:flex;align-items:center;gap:10px;}
+.eb-stat-icon{font-size:.85rem;flex-shrink:0;width:22px;text-align:center;}
+.eb-stat-track{flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;}
+.eb-stat-fill{height:100%;border-radius:999px;transition:width 1s cubic-bezier(.34,1.4,.64,1);}
+.eb-stat-pct{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);width:32px;text-align:right;flex-shrink:0;}
+
+.eb-nums{display:flex;gap:20px;position:relative;z-index:1;}
+.eb-num-item{text-align:center;}
+.eb-num-val{font-family:'DM Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1;margin-bottom:3px;}
+.eb-num-lbl{font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
+.eb-num-item.bio .eb-num-val{color:var(--bio);}
+.eb-num-item.bgs .eb-num-val{color:var(--bgs);}
+.eb-num-item.rel .eb-num-val{color:var(--rel);}
+
+/* ══ HEADER ══ */
+header{position:sticky;top:0;z-index:200;background:rgba(8,9,15,0.92);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Playfair Display',serif;font-weight:800;font-size:.92rem;letter-spacing:-.01em;color:var(--text);flex-shrink:0;}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--bio),#f97316);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.75rem;box-shadow:0 0 14px rgba(244,63,94,0.4);flex-shrink:0;}
+.header-stats{display:flex;align-items:center;gap:5px;}
+.hstat{display:flex;align-items:center;gap:5px;background:var(--s1);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:.64rem;color:var(--text2);white-space:nowrap;}
+.hstat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.hstat strong{color:var(--text);font-weight:600;}
+
+/* ══ WRAP ══ */
+.wrap{max-width:1320px;margin:0 auto;padding:26px 16px 110px;position:relative;z-index:1;}
+.section-label{display:flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:14px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ══ HERO ══ */
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-bottom:36px;padding:26px 30px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r3);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bio),var(--rel),transparent);opacity:.6;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(167,139,250,0.05),transparent);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bio);margin-bottom:12px;padding:3px 10px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);border-radius:999px;}
+.hero-h{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:10px;}
+.hero-h .g1{background:linear-gradient(120deg,var(--bio),#f97316,var(--bgs));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-h .g2{background:linear-gradient(120deg,var(--rel),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:.78rem;color:var(--text2);line-height:1.7;max-width:400px;}
+.hero-sub strong{color:var(--text);font-weight:600;}
+.cd-widget{background:var(--s2);border:1px solid var(--border2);border-radius:var(--r2);padding:18px 20px;text-align:center;position:relative;overflow:hidden;z-index:1;min-width:140px;}
+.cd-widget::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(244,63,94,0.1),transparent 60%);pointer-events:none;}
+.cd-lbl{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.cd-n{font-family:'DM Mono',monospace;font-size:3rem;font-weight:500;line-height:1;background:linear-gradient(135deg,var(--bio),#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+.cd-divider{width:32px;height:1px;background:var(--border2);margin:8px auto;}
+.cd-exam{font-size:.62rem;color:var(--text3);}
+.cd-exam strong{color:var(--text2);}
+
+/* ══ PHASES ══ */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px;}
+.phase-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;cursor:default;}
+.phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--pc);opacity:.8;}
+.phase-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.ph-num{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pc);margin-bottom:5px;opacity:.85;}
+.ph-title{font-size:.84rem;font-weight:700;margin-bottom:4px;color:var(--text);}
+.ph-days{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--pc);margin-bottom:7px;opacity:.9;}
+.ph-desc{font-size:.68rem;color:var(--text2);line-height:1.55;margin-bottom:10px;}
+.ph-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.ph-tag{font-size:.55rem;font-weight:500;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.07);color:var(--text3);background:rgba(255,255,255,0.02);}
+
+/* ══ PROGRESS ══ */
+.progress-panel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);padding:20px 24px;margin-bottom:32px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;position:relative;overflow:hidden;}
+.progress-panel::before{content:'';position:absolute;right:0;top:0;bottom:0;width:160px;background:radial-gradient(ellipse at right,rgba(167,139,250,0.06),transparent 70%);pointer-events:none;}
+.prog-label{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:14px;}
+.prog-bars{display:flex;flex-direction:column;gap:12px;}
+.prog-row{display:grid;grid-template-columns:82px 1fr 38px;gap:10px;align-items:center;}
+.prog-name{display:flex;align-items:center;gap:6px;font-size:.68rem;font-weight:600;color:var(--text2);}
+.prog-track{height:5px;background:rgba(255,255,255,0.05);border-radius:999px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:999px;transition:width 1s cubic-bezier(.34,1.4,.64,1);}
+.prog-pct{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);text-align:right;}
+.prog-big{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.prog-big-n{font-family:'DM Mono',monospace;font-size:2.8rem;font-weight:500;line-height:1;background:linear-gradient(135deg,var(--bio),var(--rel));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.prog-big-lbl{font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
+
+/* ══ MILESTONES ══ */
+.milestones-row{display:flex;gap:6px;margin-bottom:28px;flex-wrap:wrap;}
+.mstone{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--s1);font-size:.62rem;color:var(--text3);transition:all .25s;cursor:default;}
+.mstone.reached{border-color:rgba(255,255,255,0.12);color:var(--mc);background:rgba(255,255,255,0.02);box-shadow:0 0 16px -8px var(--mc);}
+.mstone-check{opacity:0;transition:opacity .2s;}
+.mstone.reached .mstone-check{opacity:1;}
+
+/* ══ CALENDAR ══ */
+.cal-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.cal-title{font-size:.88rem;font-weight:700;letter-spacing:-.01em;}
+.cal-hint{font-size:.6rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px;}
+.cal-legend{display:flex;gap:10px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:.58rem;color:var(--text3);}
+.leg-swatch{width:9px;height:4px;border-radius:2px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:24px;}
+
+/* ══ DAY CARD ══ */
+.day-card{background:var(--s1);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.2,.64,1);position:relative;overflow:hidden;min-height:98px;display:flex;flex-direction:column;animation:rise .5s ease both;}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--dc,transparent);}
+.day-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.day-card.done-day{opacity:.55;}
+.day-card.done-day:hover{opacity:1;}
+.day-card.selected{border-color:rgba(255,255,255,0.2);box-shadow:0 0 0 1px rgba(255,255,255,0.07),var(--shadow-md);}
+.day-top{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 4px;}
+.day-num{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;color:var(--text3);}
+.day-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.day-pills{padding:0 7px 7px;flex:1;display:flex;flex-direction:column;gap:3px;}
+.day-pill{padding:2px 6px;border-radius:5px;font-size:.51rem;font-weight:600;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.day-milestone-dot{position:absolute;bottom:4px;right:5px;font-size:.56rem;}
+.done-veil{position:absolute;inset:0;background:rgba(8,9,15,0.65);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;border-radius:12px;}
+.done-veil-icon{width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:.75rem;}
+.day-card.done-day .done-veil{opacity:1;}
+
+/* ══ DETAIL PANEL ══ */
+.detail-panel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:22px;animation:pop .3s cubic-bezier(.34,1.4,.64,1) both;}
+@keyframes pop{from{opacity:0;transform:scale(.97) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.detail-panel.hidden{display:none;}
+.dp-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;position:relative;overflow:hidden;background:var(--s2);}
+.dp-header::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--bio),var(--rel));}
+.dp-num{font-family:'DM Mono',monospace;font-size:1.7rem;font-weight:500;color:var(--text3);line-height:1;padding-left:5px;}
+.dp-eyebrow{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+.dp-title{font-size:.95rem;font-weight:700;letter-spacing:-.02em;margin-bottom:2px;line-height:1.3;}
+.dp-week{font-size:.62rem;color:var(--text2);}
+.dp-close{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.78rem;transition:all .2s;flex-shrink:0;}
+.dp-close:hover{background:rgba(255,255,255,0.05);color:var(--text);}
+.dp-body{padding:16px 18px;}
+.milestone-banner{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);margin-bottom:14px;font-size:.7rem;font-weight:600;position:relative;overflow:hidden;}
+.milestone-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(244,63,94,0.05),transparent);pointer-events:none;}
+.mb-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.mb-text{color:var(--text);line-height:1.4;}
+.dp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.task-block{border-radius:var(--r);border:1px solid var(--border);background:var(--s2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s;}
+.task-block:hover{border-color:var(--border2);}
+.tb-head{padding:10px 13px 9px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;}
+.tb-head::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tc);}
+.tb-icon{font-size:.95rem;flex-shrink:0;}
+.tb-info{flex:1;min-width:0;}
+.tb-name{font-size:.74rem;font-weight:700;color:var(--tc);letter-spacing:-.01em;}
+.tb-meta{font-size:.57rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tb-badge{flex-shrink:0;padding:2px 8px;border-radius:999px;font-size:.54rem;font-weight:600;border:1px solid var(--tc);color:var(--tc);font-family:'DM Mono',monospace;background:rgba(255,255,255,0.02);white-space:nowrap;}
+.tb-tasks{padding:8px 9px;display:flex;flex-direction:column;gap:3px;flex:1;}
+.tb-task{display:flex;align-items:flex-start;gap:8px;padding:8px 9px;border-radius:8px;cursor:pointer;transition:background .15s;user-select:none;-webkit-user-select:none;}
+.tb-task:hover{background:rgba(255,255,255,0.03);}
+.tb-task:active{background:rgba(255,255,255,0.06);}
+.tb-check{width:18px;height:18px;border-radius:5px;flex-shrink:0;margin-top:1px;border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;transition:all .2s cubic-bezier(.34,1.4,.64,1);}
+.tb-task.done .tb-check{background:var(--tc);border-color:var(--tc);box-shadow:0 0 9px -2px var(--tc);transform:scale(1.05);}
+.tb-check svg{opacity:0;transform:scale(0) rotate(-10deg);transition:all .2s;}
+.tb-task.done .tb-check svg{opacity:1;transform:scale(1) rotate(0);}
+.tb-task-text{font-size:.7rem;color:var(--text);line-height:1.4;transition:all .2s;}
+.tb-task.done .tb-task-text{color:var(--text3);text-decoration:line-through;text-decoration-color:var(--tc);}
+.tb-task-tip{font-size:.59rem;color:var(--text3);margin-top:2px;line-height:1.35;font-style:italic;}
+.tb-time{padding:7px 11px 9px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:.57rem;color:var(--text3);display:flex;align-items:center;gap:6px;margin-top:auto;}
+.tb-time-pip{width:5px;height:5px;border-radius:50%;background:var(--tc);flex-shrink:0;box-shadow:0 0 5px var(--tc);}
+.dp-nav{display:flex;gap:8px;padding:0 18px 16px;}
+.dp-nav-btn{padding:7px 15px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:'DM Mono',monospace;font-size:.6rem;cursor:pointer;transition:all .2s;}
+.dp-nav-btn:hover:not(:disabled){color:var(--text);border-color:var(--border2);background:rgba(255,255,255,0.03);}
+.dp-nav-btn:disabled{opacity:.2;cursor:default;}
+
+/* ══ BOTTOM BAR ══ */
+.bottom-bar{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(8,9,15,0.96);backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--border2);border-radius:999px;padding:0 18px;height:42px;display:flex;gap:14px;align-items:center;z-index:200;box-shadow:var(--shadow-lg);font-size:.64rem;color:var(--text3);white-space:nowrap;}
+.bb-item{display:flex;align-items:center;gap:5px;}
+.bb-item strong{color:var(--text);font-weight:600;}
+.bb-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.bb-div{width:1px;height:13px;background:var(--border);}
+.bb-msg{color:var(--bio);font-weight:600;}
+
+/* ══ TOAST ══ */
+.toast{position:fixed;top:64px;right:14px;background:var(--s2);border:1px solid var(--border2);border-radius:11px;padding:9px 13px;font-size:.68rem;color:var(--text);z-index:400;transform:translateX(180%) scale(.9);transition:transform .3s cubic-bezier(.34,1.4,.64,1);display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-md);max-width:220px;}
+.toast.show{transform:translateX(0) scale(1);}
+.t-pip{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — Mobile First
+════════════════════════════════════════ */
+
+/* Tablet 1024 */
+@media(max-width:1024px){
+  .cal-grid{grid-template-columns:repeat(6,1fr);}
+  .phases{grid-template-columns:repeat(2,1fr);}
+  .phases .phase-card:last-child{grid-column:1/-1;}
+}
+
+/* Tablet 768 */
+@media(max-width:768px){
+  .exam-banner{gap:18px;padding:18px 16px;}
+  .eb-vdiv{display:none;}
+  .eb-number{font-size:clamp(3rem,12vw,5rem);}
+  .eb-nums{gap:14px;}
+  .eb-num-val{font-size:1.25rem;}
+  .eb-stats{min-width:160px;}
+
+  header{height:48px;padding:0 12px;}
+  .logo-text{display:none;}
+  .hstat{padding:3px 8px;font-size:.6rem;}
+
+  .wrap{padding:18px 12px 96px;}
+
+  .hero{grid-template-columns:1fr;padding:18px 16px;gap:0;border-radius:var(--r2);}
+  .cd-widget{display:none;}
+  .hero-h{font-size:clamp(1.5rem,5.5vw,2.2rem);}
+
+  .phases{grid-template-columns:1fr;}
+  .phases .phase-card:last-child{grid-column:auto;}
+
+  .progress-panel{grid-template-columns:1fr;gap:12px;padding:16px 14px;}
+  .progress-panel::before{display:none;}
+  .prog-big{flex-direction:row;gap:8px;align-items:baseline;justify-content:flex-start;}
+  .prog-big-n{font-size:2.2rem;}
+
+  .cal-grid{grid-template-columns:repeat(5,1fr);gap:5px;}
+  .day-card{min-height:86px;}
+
+  .dp-grid{grid-template-columns:1fr;}
+  .dp-header{padding:12px 14px 10px;}
+  .dp-num{font-size:1.4rem;}
+  .dp-title{font-size:.88rem;}
+  .dp-body{padding:12px 12px;}
+  .dp-nav{padding:0 12px 14px;}
+
+  .bottom-bar{left:10px;right:10px;transform:none;justify-content:center;gap:10px;border-radius:16px;height:44px;}
+  .bb-div:nth-child(n+4){display:none;}
+}
+
+/* Phone 480 */
+@media(max-width:480px){
+  .exam-banner{flex-direction:column;gap:16px;padding:18px 14px 20px;text-align:center;}
+  .eb-main{width:100%;}
+  .eb-tag{justify-content:center;}
+  .eb-number{font-size:clamp(4rem,20vw,5.5rem);}
+  .eb-nums{justify-content:center;gap:16px;}
+  .eb-stats{width:100%;min-width:unset;}
+  .eb-stat-row{gap:8px;}
+
+  .header-stats .hstat:nth-child(n+4){display:none;}
+  .hstat{font-size:.58rem;padding:3px 7px;}
+
+  .hero{border-radius:var(--r);}
+  .hero-sub{font-size:.74rem;}
+
+  .section-label{font-size:.52rem;}
+  .milestones-row{gap:5px;}
+  .mstone{font-size:.58rem;padding:5px 9px;}
+
+  .prog-row{grid-template-columns:68px 1fr 32px;gap:8px;}
+  .prog-name{font-size:.63rem;}
+
+  .cal-grid{grid-template-columns:repeat(4,1fr);gap:4px;}
+  .day-card{min-height:78px;border-radius:10px;}
+  .day-top{padding:7px 7px 3px;}
+  .day-pills{padding:0 6px 6px;}
+  .day-pill{font-size:.48rem;padding:2px 5px;}
+  .done-veil{border-radius:10px;}
+  .done-veil-icon{width:22px;height:22px;font-size:.7rem;}
+
+  .dp-header{grid-template-columns:auto 1fr auto;gap:8px;padding:11px 12px 10px;}
+  .dp-num{font-size:1.2rem;}
+  .dp-title{font-size:.82rem;}
+  .dp-week,.dp-eyebrow{font-size:.56rem;}
+  .dp-body{padding:10px 10px;}
+  .tb-head{padding:9px 11px 8px;}
+  .tb-name{font-size:.7rem;}
+  .tb-badge{font-size:.52rem;padding:2px 7px;}
+  .tb-tasks{padding:6px 7px;}
+  .tb-task{padding:7px 7px;gap:7px;}
+  .tb-task-text{font-size:.67rem;}
+  .tb-task-tip{font-size:.56rem;}
+  .tb-time{font-size:.54rem;padding:6px 9px 8px;}
+  .dp-nav{padding:0 10px 12px;gap:6px;}
+  .dp-nav-btn{padding:6px 12px;font-size:.56rem;}
+  .milestone-banner{padding:9px 11px;font-size:.67rem;gap:8px;}
+  .mb-icon{font-size:1rem;}
+
+  .bottom-bar{left:8px;right:8px;gap:8px;height:44px;border-radius:14px;font-size:.6rem;padding:0 12px;}
+  .bb-div{display:none;}
+  .bb-item:nth-child(n+5){display:none;}
+  .toast{right:8px;left:8px;max-width:none;top:58px;}
+}
+
+/* Very small 360 */
+@media(max-width:360px){
+  .cal-grid{grid-template-columns:repeat(3,1fr);}
+  .header-stats .hstat:nth-child(n+3){display:none;}
+  .eb-number{font-size:4.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="amb" id="a1"></div>
+<div class="amb" id="a2"></div>
+<div class="amb" id="a3"></div>
+<div class="toast" id="toast"><div class="t-pip" id="t-pip"></div><span id="t-msg"></span></div>
+
+<!-- ══ EXAM COUNTDOWN BANNER ══ -->
+<div class="exam-banner">
+  <div class="eb-main">
+    <div class="eb-tag"><div class="eb-tag-dot"></div>Half Yearly Exam · June 23, 2026</div>
+    <div class="eb-number" id="banner-days">--</div>
+    <div class="eb-days-label">Days Left</div>
+    <div class="eb-exam-date">Exam on <strong>June 23, 2026</strong></div>
+  </div>
+
+  <div class="eb-vdiv"></div>
+
+  <div class="eb-nums">
+    <div class="eb-num-item bio">
+      <div class="eb-num-val" id="banner-bio">0%</div>
+      <div class="eb-num-lbl">🧬 Biology</div>
+    </div>
+    <div class="eb-num-item bgs">
+      <div class="eb-num-val" id="banner-bgs">0%</div>
+      <div class="eb-num-lbl">🌍 BGS</div>
+    </div>
+    <div class="eb-num-item rel">
+      <div class="eb-num-val" id="banner-rel">0%</div>
+      <div class="eb-num-lbl">☪️ Religion</div>
+    </div>
+  </div>
+
+  <div class="eb-vdiv"></div>
+
+  <div class="eb-stats">
+    <div class="eb-stat-row">
+      <div class="eb-stat-icon">🧬</div>
+      <div class="eb-stat-track"><div class="eb-stat-fill" id="ebp-bio" style="width:0%;background:linear-gradient(90deg,#f43f5e,#f97316)"></div></div>
+      <div class="eb-stat-pct" id="ebpp-bio">0%</div>
+    </div>
+    <div class="eb-stat-row">
+      <div class="eb-stat-icon">🌍</div>
+      <div class="eb-stat-track"><div class="eb-stat-fill" id="ebp-bgs" style="width:0%;background:linear-gradient(90deg,#f59e0b,#fcd34d)"></div></div>
+      <div class="eb-stat-pct" id="ebpp-bgs">0%</div>
+    </div>
+    <div class="eb-stat-row">
+      <div class="eb-stat-icon">☪️</div>
+      <div class="eb-stat-track"><div class="eb-stat-fill" id="ebp-rel" style="width:0%;background:linear-gradient(90deg,#a78bfa,#818cf8)"></div></div>
+      <div class="eb-stat-pct" id="ebpp-rel">0%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STICKY HEADER ══ -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">⚔</div>
+    <span class="logo-text">30-Day Battle Plan</span>
+  </div>
+  <div class="header-stats">
+    <div class="hstat"><div class="hstat-dot" style="background:var(--bio)"></div>Days: <strong id="h-dd">0</strong>/30</div>
+    <div class="hstat"><div class="hstat-dot" style="background:var(--bgs)"></div>Tasks: <strong id="h-td">0</strong></div>
+    <div class="hstat"><div class="hstat-dot" style="background:var(--rel)"></div><strong id="h-pct">0%</strong> done</div>
+    <div class="hstat"><div class="hstat-dot" style="background:#f97316"></div>Exam: <strong id="h-exam">--</strong>d</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">Half Yearly Prep · June 2026</div>
+      <h1 class="hero-h">
+        <span class="g1">30 Days.</span><br>
+        <span class="g2">Three Subjects.</span><br>
+        One Goal.
+      </h1>
+      <p class="hero-sub">
+        <strong>Biology</strong> every day. <strong>BGS</strong> done by Day 14.
+        <strong>Religion</strong> done by Day 28. Then → Physics &amp; Chemistry.
+      </p>
+    </div>
+    <div class="cd-widget">
+      <div class="cd-lbl">Exam Countdown</div>
+      <div class="cd-n" id="cd-n">--</div>
+      <div class="cd-divider"></div>
+      <div class="cd-exam">Until <strong>June 23, 2026</strong></div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="section-label">Study Phases</div>
+  <div class="phases">
+    <div class="phase-card" style="--pc:#f43f5e">
+      <div class="ph-num">Phase 1 · Days 1–14</div>
+      <div class="ph-title">🧬 Bio + 🌍 BGS Assault</div>
+      <div class="ph-days">D1 → D14</div>
+      <div class="ph-desc">Biology Ch1–Ch3 deep understanding. All 5 BGS chapters crushed. BGS fully done by Day 14.</div>
+      <div class="ph-tags"><span class="ph-tag">Bio Ch1</span><span class="ph-tag">Bio Ch2</span><span class="ph-tag">Bio Ch3</span><span class="ph-tag">BGS ×5</span><span class="ph-tag">Rel Ch1</span></div>
+    </div>
+    <div class="phase-card" style="--pc:#a78bfa">
+      <div class="ph-num">Phase 2 · Days 15–28</div>
+      <div class="ph-title">⚛️ Bio Deep + ☪️ Religion Done</div>
+      <div class="ph-days">D15 → D28</div>
+      <div class="ph-desc">Biology Ch7 + Ch9 completed. All Religion chapters finished. Religion 100% done by Day 28.</div>
+      <div class="ph-tags"><span class="ph-tag">Bio Ch7</span><span class="ph-tag">Bio Ch9</span><span class="ph-tag">Rel Ch2–Ch5</span></div>
+    </div>
+    <div class="phase-card" style="--pc:#22d3ee">
+      <div class="ph-num">Phase 3 · Days 29–30</div>
+      <div class="ph-title">🔁 Full Revision Sprint</div>
+      <div class="ph-days">D29 → D30</div>
+      <div class="ph-desc">Biology full revision. BGS quick refresh. Religion final check. Then SHIFT to Physics & Chemistry.</div>
+      <div class="ph-tags"><span class="ph-tag">Bio revision</span><span class="ph-tag">BGS revision</span><span class="ph-tag">Rel revision</span></div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="section-label">Subject Progress</div>
+  <div class="progress-panel">
+    <div>
+      <div class="prog-label">Completion by subject</div>
+      <div class="prog-bars">
+        <div class="prog-row">
+          <div class="prog-name"><span>🧬</span> Biology</div>
+          <div class="prog-track"><div class="prog-fill" id="pb-bio" style="width:0%;background:linear-gradient(90deg,#f43f5e,#f97316)"></div></div>
+          <div class="prog-pct" id="pp-bio">0%</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-name"><span>🌍</span> BGS</div>
+          <div class="prog-track"><div class="prog-fill" id="pb-bgs" style="width:0%;background:linear-gradient(90deg,#f59e0b,#fcd34d)"></div></div>
+          <div class="prog-pct" id="pp-bgs">0%</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-name"><span>☪️</span> Religion</div>
+          <div class="prog-track"><div class="prog-fill" id="pb-rel" style="width:0%;background:linear-gradient(90deg,#a78bfa,#818cf8)"></div></div>
+          <div class="prog-pct" id="pp-rel">0%</div>
+        </div>
+      </div>
+    </div>
+    <div class="prog-big">
+      <div class="prog-big-n" id="m-pct">0%</div>
+      <div class="prog-big-lbl">Total</div>
+    </div>
+  </div>
+
+  <!-- MILESTONES -->
+  <div class="section-label">Milestones</div>
+  <div class="milestones-row" id="milestones"></div>
+
+  <!-- CALENDAR -->
+  <div class="cal-head">
+    <div>
+      <div class="cal-title">📅 30-Day Study Calendar</div>
+      <div class="cal-hint">Tap any day to see tasks</div>
+    </div>
+    <div class="cal-legend">
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--bio)"></div>Bio</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--bgs)"></div>BGS</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--rel)"></div>Rel</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--rev)"></div>Rev</div>
+    </div>
+  </div>
+  <div class="cal-grid" id="cal-grid"></div>
+
+  <!-- DETAIL PANEL -->
+  <div class="detail-panel hidden" id="detail-panel">
+    <div class="dp-header">
+      <div class="dp-num" id="dp-num">01</div>
+      <div>
+        <div class="dp-eyebrow" id="dp-eyebrow">Day 1 · Phase 1</div>
+        <div class="dp-title" id="dp-title">Loading...</div>
+        <div class="dp-week" id="dp-week"></div>
+      </div>
+      <button class="dp-close" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="dp-body">
+      <div id="dp-milestone-banner"></div>
+      <div class="dp-grid" id="dp-grid"></div>
+    </div>
+    <div class="dp-nav">
+      <button class="dp-nav-btn" id="dp-prev" onclick="navDay(-1)">← Prev</button>
+      <button class="dp-nav-btn" id="dp-next" onclick="navDay(1)">Next →</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <div class="bb-item"><div class="bb-dot" style="background:var(--bio)"></div>Bio: <strong id="bb-bio">0%</strong></div>
+  <div class="bb-div"></div>
+  <div class="bb-item"><div class="bb-dot" style="background:var(--bgs)"></div>BGS: <strong id="bb-bgs">0%</strong></div>
+  <div class="bb-div"></div>
+  <div class="bb-item"><div class="bb-dot" style="background:var(--rel)"></div>Rel: <strong id="bb-rel">0%</strong></div>
+  <div class="bb-div"></div>
+  <div class="bb-msg" id="bb-msg">Let's start! 💪</div>
+</div>
+
+<script>
+const PLAN=[
+  {day:1,week:1,phase:1,milestone:null,title:'Bio Ch1 begins · BGS Ch1 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 1',time:'8:30 – 9:30 PM',tasks:[{id:'d1b1',text:'Read Chapter 1 — first half',tip:'Focus on understanding, not just reading. Pause after each section.'},{id:'d1b2',text:'Note key terms & definitions',tip:'Write in your own words.'}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 1 · 17 pages',time:'9:30 – 10:30 PM',tasks:[{id:'d1g1',text:'Read pages 1–9 (first half)',tip:'17 pages total, take your time.'},{id:'d1g2',text:'Underline key points as you go',tip:''}]}]},
+  {day:2,week:1,phase:1,milestone:null,title:'Bio Ch1 deeper · BGS Ch1 DONE',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 1 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d2b1',text:'Read Chapter 1 — second half',tip:''},{id:'d2b2',text:'Summarize the chapter in 5 sentences',tip:'This cements understanding.'}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 1 · Finish',time:'9:30 – 10:30 PM',tasks:[{id:'d2g1',text:'Read pages 10–17 (finish)',tip:''},{id:'d2g2',text:'✅ Mark BGS Chapter 1 complete',tip:'Recap: 3 key points from Ch1?'}]}]},
+  {day:3,week:1,phase:1,milestone:null,title:'Bio Ch1 key points · Religion Ch1 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 1 — Deep dive',time:'8:30 – 9:30 PM',tasks:[{id:'d3b1',text:'Go deeper — important diagrams & concepts',tip:"Understand, don't memorize blindly."},{id:'d3b2',text:'List the 5 most important points of Ch1',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 1 · L1–L2 of 5',time:'9:30 – 10:30 PM',tasks:[{id:'d3r1',text:'Lesson 1 — Read & understand meaning',tip:"Don't rush. 5 lessons in 3 days."},{id:'d3r2',text:'Lesson 2 — Read & understand',tip:''}]}]},
+  {day:4,week:1,phase:1,milestone:null,title:'Bio Ch1 self-test · Religion Ch1 L3-L4',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 1 — Self test',time:'8:30 – 9:30 PM',tasks:[{id:'d4b1',text:'Close book — recall everything you know about Ch1',tip:'This is the real test. What can you remember?'},{id:'d4b2',text:'Fill gaps — re-read parts you forgot',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 1 · L3–L4',time:'9:30 – 10:30 PM',tasks:[{id:'d4r1',text:'Lesson 3 — Read & understand',tip:''},{id:'d4r2',text:'Lesson 4 — Read & understand',tip:''}]}]},
+  {day:5,week:1,phase:1,milestone:'🧬 Biology Chapter 1 — COMPLETE! Great start!',title:'Bio Ch1 DONE ✅ · Religion Ch1 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 1 — Final review',time:'8:30 – 9:30 PM',tasks:[{id:'d5b1',text:'Final review of Chapter 1',tip:"Can you explain it without the book?"},{id:'d5b2',text:'✅ Mark Bio Chapter 1 complete!',tip:'Big win! Chapter 1 done.'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 1 · L5 + Full revision',time:'9:30 – 10:30 PM',tasks:[{id:'d5r1',text:'Lesson 5 — Read & understand',tip:'Last lesson of Chapter 1!'},{id:'d5r2',text:'✅ Quick revision: all 5 lessons',tip:'Spend 5 mins recalling each lesson.'}]}]},
+  {day:6,week:1,phase:1,milestone:null,title:'Bio Ch2 starts · BGS Ch3 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 2 — Start',time:'8:30 – 9:30 PM',tasks:[{id:'d6b1',text:'Read Chapter 2 — first half',tip:'Fresh chapter, fresh start.'},{id:'d6b2',text:'Key terms from Chapter 2',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 3 · 23 pages',time:'9:30 – 10:30 PM',tasks:[{id:'d6g1',text:'Read pages 1–11 (first half)',tip:'Biggest BGS chapter — 23 pages. Pace yourself.'},{id:'d6g2',text:'Note important headings & points',tip:''}]}]},
+  {day:7,week:1,phase:1,milestone:null,title:'Bio Ch2 continues · BGS Ch3 continues',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 2 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d7b1',text:'Continue Chapter 2 — second portion',tip:''},{id:'d7b2',text:'Draw or write any diagrams from Ch2',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 3 (cont.)',time:'9:30 – 10:30 PM',tasks:[{id:'d7g1',text:'Read pages 12–23 (finish)',tip:''},{id:'d7g2',text:'Recap: what are the 3 main ideas?',tip:''}]}]},
+  {day:8,week:2,phase:1,milestone:'🌍 BGS Chapter 3 — DONE!',title:'Bio Ch2 deeper · BGS Ch3 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 2 — Deep dive',time:'8:30 – 9:30 PM',tasks:[{id:'d8b1',text:'Important concepts & explanations',tip:''},{id:'d8b2',text:'Summarize Chapter 2 so far',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 3 — Finish',time:'9:30 – 10:30 PM',tasks:[{id:'d8g1',text:'Final read-through of Chapter 3',tip:''},{id:'d8g2',text:'✅ Mark BGS Chapter 3 complete',tip:'2 BGS chapters done! 3 more to go.'}]}]},
+  {day:9,week:2,phase:1,milestone:null,title:'Bio Ch2 self-test · BGS Ch6 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 2 — Self test',time:'8:30 – 9:30 PM',tasks:[{id:'d9b1',text:'Close book — recall Ch2 fully',tip:''},{id:'d9b2',text:'Re-read anything you forgot',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 6 · 13 pages',time:'9:30 – 10:30 PM',tasks:[{id:'d9g1',text:'Read Chapter 6 — first half (7 pages)',tip:'Shorter chapter — 13 pages total.'},{id:'d9g2',text:'Key points noted',tip:''}]}]},
+  {day:10,week:2,phase:1,milestone:'🧬 Bio Ch2 DONE · 🌍 BGS Ch6 DONE',title:'Bio Ch2 DONE ✅ · BGS Ch6 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 2 — Final',time:'8:30 – 9:30 PM',tasks:[{id:'d10b1',text:'Final review of Chapter 2',tip:''},{id:'d10b2',text:'✅ Mark Bio Chapter 2 complete!',tip:'2 Bio chapters down. 3 left.'}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 6 — Finish',time:'9:30 – 10:30 PM',tasks:[{id:'d10g1',text:'Read Chapter 6 — second half (finish)',tip:''},{id:'d10g2',text:'✅ Mark BGS Chapter 6 complete',tip:'3 BGS chapters done! 2 more.'}]}]},
+  {day:11,week:2,phase:1,milestone:null,title:'Bio Ch3 starts · BGS Ch10 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 3 — Start',time:'8:30 – 9:30 PM',tasks:[{id:'d11b1',text:'Read Chapter 3 — first half',tip:''},{id:'d11b2',text:'Key concepts from Ch3 so far',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 10 · 14 pages',time:'9:30 – 10:30 PM',tasks:[{id:'d11g1',text:'Read Chapter 10 — first half (7 pages)',tip:''},{id:'d11g2',text:'Note the main themes',tip:''}]}]},
+  {day:12,week:2,phase:1,milestone:'🌍 BGS Chapter 10 — DONE!',title:'Bio Ch3 continues · BGS Ch10 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 3 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d12b1',text:'Continue Chapter 3 — second portion',tip:''},{id:'d12b2',text:'Diagrams and key explanations',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 10 — Finish',time:'9:30 – 10:30 PM',tasks:[{id:'d12g1',text:'Read Chapter 10 — finish remaining pages',tip:''},{id:'d12g2',text:'✅ Mark BGS Chapter 10 complete',tip:'4 BGS chapters done! Only 1 left!'}]}]},
+  {day:13,week:2,phase:1,milestone:null,title:'Bio Ch3 self-test · BGS Ch13 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 3 — Self test',time:'8:30 – 9:30 PM',tasks:[{id:'d13b1',text:'Close book — recall Chapter 3',tip:''},{id:'d13b2',text:'Fill any gaps found',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 13 · 18 pages',time:'9:30 – 10:30 PM',tasks:[{id:'d13g1',text:'Read Chapter 13 — first half (9 pages)',tip:'Last BGS chapter! Finish strong.'},{id:'d13g2',text:'Key points & summary',tip:''}]}]},
+  {day:14,week:2,phase:1,milestone:'🎉 BGS 100% COMPLETE — All 5 chapters DONE! Now focus shifts.',title:'Bio Ch3 DONE ✅ · BGS ALL DONE 🎉',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 3 — Final',time:'8:30 – 9:30 PM',tasks:[{id:'d14b1',text:'Final review of Chapter 3',tip:''},{id:'d14b2',text:'✅ Mark Bio Chapter 3 complete!',tip:'3 Bio chapters done! Halfway through Bio.'}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Chapter 13 — FINISH BGS',time:'9:30 – 10:30 PM',tasks:[{id:'d14g1',text:'Read Chapter 13 — finish (pages 10–18)',tip:''},{id:'d14g2',text:'✅ BGS Chapter 13 COMPLETE — BGS ALL DONE! 🎉',tip:'All 5 BGS chapters finished. Huge milestone!'}]}]},
+  {day:15,week:3,phase:2,milestone:null,title:'Bio Ch7 starts · Religion Ch2 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 7 — Start',time:'8:30 – 9:30 PM',tasks:[{id:'d15b1',text:'Read Chapter 7 — first half',tip:'New chapter, fresh energy!'},{id:'d15b2',text:'Key terms from Chapter 7',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 2 · L1–L2 of 7',time:'9:30 – 10:30 PM',tasks:[{id:'d15r1',text:'Lesson 1 — Read & understand',tip:'Ch2 has 7 lessons — biggest chapter.'},{id:'d15r2',text:'Lesson 2 — Read & understand',tip:''}]}]},
+  {day:16,week:3,phase:2,milestone:null,title:'Bio Ch7 deeper · Religion Ch2 L3-L4',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 7 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d16b1',text:'Continue Chapter 7 — second portion',tip:''},{id:'d16b2',text:'Important concepts noted',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 2 · L3–L4',time:'9:30 – 10:30 PM',tasks:[{id:'d16r1',text:'Lesson 3 — Read & understand',tip:''},{id:'d16r2',text:'Lesson 4 — Read & understand',tip:''}]}]},
+  {day:17,week:3,phase:2,milestone:null,title:'Bio Ch7 continues · Religion Ch2 L5-L6',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 7 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d17b1',text:'Deeper understanding — diagrams & key facts',tip:''},{id:'d17b2',text:'Summarize Chapter 7 so far',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 2 · L5–L6',time:'9:30 – 10:30 PM',tasks:[{id:'d17r1',text:'Lesson 5 — Read & understand',tip:''},{id:'d17r2',text:'Lesson 6 — Read & understand',tip:''}]}]},
+  {day:18,week:3,phase:2,milestone:'☪️ Religion Chapter 2 — DONE!',title:'Bio Ch7 self-test · Religion Ch2 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 7 — Self test',time:'8:30 – 9:30 PM',tasks:[{id:'d18b1',text:'Close book — recall Chapter 7',tip:''},{id:'d18b2',text:'Fill any gaps in understanding',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 2 · L7 (final)',time:'9:30 – 10:30 PM',tasks:[{id:'d18r1',text:'Lesson 7 — Read & understand',tip:'Last lesson of Ch2!'},{id:'d18r2',text:'✅ Revision: all 7 lessons in 5 mins',tip:'Quick mental recall of each lesson.'}]}]},
+  {day:19,week:3,phase:2,milestone:null,title:'Bio Ch7 DONE ✅ · Religion Ch3 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 7 — Final',time:'8:30 – 9:30 PM',tasks:[{id:'d19b1',text:'Final review of Chapter 7',tip:''},{id:'d19b2',text:'✅ Mark Bio Chapter 7 complete!',tip:'4 Bio chapters done! Only Ch9 left!'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 3 · L1–L2 of 5',time:'9:30 – 10:30 PM',tasks:[{id:'d19r1',text:'Lesson 1 — Read & understand',tip:'3rd chapter of Religion!'},{id:'d19r2',text:'Lesson 2 — Read & understand',tip:''}]}]},
+  {day:20,week:3,phase:2,milestone:null,title:'Bio Ch9 starts · Religion Ch3 continues',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 9 — Start',time:'8:30 – 9:30 PM',tasks:[{id:'d20b1',text:'Read Chapter 9 — first half',tip:'Last Biology chapter! Final push.'},{id:'d20b2',text:'Key terms from Chapter 9',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 3 · L3–L4',time:'9:30 – 10:30 PM',tasks:[{id:'d20r1',text:'Lesson 3 — Read & understand',tip:''},{id:'d20r2',text:'Lesson 4 — Read & understand',tip:''}]}]},
+  {day:21,week:3,phase:2,milestone:'☪️ Religion Chapter 3 — DONE!',title:'Bio Ch9 deeper · Religion Ch3 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 9 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d21b1',text:'Continue Chapter 9 — second portion',tip:''},{id:'d21b2',text:'Important concepts & diagrams',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 3 · L5 (final)',time:'9:30 – 10:30 PM',tasks:[{id:'d21r1',text:'Lesson 5 — Read & understand',tip:''},{id:'d21r2',text:'✅ Revision: recap all 5 lessons',tip:''}]}]},
+  {day:22,week:4,phase:2,milestone:null,title:'Bio Ch9 continues · Religion Ch4 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 9 (cont.)',time:'8:30 – 9:30 PM',tasks:[{id:'d22b1',text:'Deeper dive — Chapter 9 concepts',tip:''},{id:'d22b2',text:'Summarize Chapter 9 so far',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 4 · L1–L2 of 8',time:'9:30 – 10:30 PM',tasks:[{id:'d22r1',text:'Lesson 1 — Read & understand',tip:'Ch4 has 8 lessons — biggest! 4 days for it.'},{id:'d22r2',text:'Lesson 2 — Read & understand',tip:''}]}]},
+  {day:23,week:4,phase:2,milestone:null,title:'Bio Ch9 self-test · Religion Ch4 L3-L4',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 9 — Self test',time:'8:30 – 9:30 PM',tasks:[{id:'d23b1',text:'Close book — recall Chapter 9',tip:''},{id:'d23b2',text:'Fill gaps in understanding',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 4 · L3–L4',time:'9:30 – 10:30 PM',tasks:[{id:'d23r1',text:'Lesson 3 — Read & understand',tip:''},{id:'d23r2',text:'Lesson 4 — Read & understand',tip:''}]}]},
+  {day:24,week:4,phase:2,milestone:null,title:'Bio Ch9 DONE ✅ · Religion Ch4 L5-L6',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Chapter 9 — FINAL',time:'8:30 – 9:30 PM',tasks:[{id:'d24b1',text:'Final review of Chapter 9',tip:'Last Bio chapter — finish strong!'},{id:'d24b2',text:'✅ Mark Bio Chapter 9 complete! All 5 done!',tip:'ALL BIOLOGY CHAPTERS DONE! 🔥'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 4 · L5–L6',time:'9:30 – 10:30 PM',tasks:[{id:'d24r1',text:'Lesson 5 — Read & understand',tip:''},{id:'d24r2',text:'Lesson 6 — Read & understand',tip:''}]}]},
+  {day:25,week:4,phase:2,milestone:'☪️ Religion Chapter 4 — DONE! · 🧬 All Bio chapters covered!',title:'Bio revision starts · Religion Ch4 DONE ✅',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Revision — Ch1 + Ch2',time:'8:30 – 9:30 PM',tasks:[{id:'d25b1',text:'Revise Bio Chapter 1 — quick run through',tip:'Can you explain it without notes?'},{id:'d25b2',text:'Revise Bio Chapter 2 — key points',tip:'Focus on weak spots.'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 4 · L7–L8 (final)',time:'9:30 – 10:30 PM',tasks:[{id:'d25r1',text:'Lesson 7 — Read & understand',tip:''},{id:'d25r2',text:'Lesson 8 — Read & understand → Ch4 DONE ✅',tip:''}]}]},
+  {day:26,week:4,phase:3,milestone:null,title:'Bio deep revision · Religion Ch5 starts',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Revision — Ch3 + Ch7',time:'8:30 – 9:30 PM',tasks:[{id:'d26b1',text:'Revise Bio Chapter 3 — key concepts',tip:''},{id:'d26b2',text:'Revise Bio Chapter 7 — important points',tip:''}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 5 · L1–L2 of 5',time:'9:30 – 10:30 PM',tasks:[{id:'d26r1',text:'Lesson 1 — Read & understand',tip:'Last chapter of Religion!'},{id:'d26r2',text:'Lesson 2 — Read & understand',tip:''}]}]},
+  {day:27,week:4,phase:3,milestone:null,title:'Bio Ch9 revision · Religion Ch5 continues',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Revision — Ch9',time:'8:30 – 9:30 PM',tasks:[{id:'d27b1',text:'Revise Bio Chapter 9 — key concepts',tip:''},{id:'d27b2',text:'Overall Bio: what are your weakest areas?',tip:'Note them for Day 29.'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 5 · L3–L4',time:'9:30 – 10:30 PM',tasks:[{id:'d27r1',text:'Lesson 3 — Read & understand',tip:''},{id:'d27r2',text:'Lesson 4 — Read & understand',tip:''}]}]},
+  {day:28,week:4,phase:3,milestone:'🎉 RELIGION 100% COMPLETE — All 5 chapters, all 30 lessons DONE!',title:'Bio full revision · Religion ALL DONE 🎉',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Full revision sprint',time:'8:30 – 9:30 PM',tasks:[{id:'d28b1',text:'Full Bio revision — ALL chapters rapid fire',tip:'Chapter by chapter, 10 mins each.'},{id:'d28b2',text:'Identify 3 weak points to fix on Day 29',tip:'Be honest with yourself.'}]},
+    {id:'rel',name:'Religion',icon:'☪️',color:'#a78bfa',chapter:'Chapter 5 · L5 — Religion DONE',time:'9:30 – 10:30 PM',tasks:[{id:'d28r1',text:'Lesson 5 — Read & understand',tip:'Final lesson of all Religion!'},{id:'d28r2',text:'✅ RELIGION 100% COMPLETE! All 30 lessons done 🎉',tip:'Massive achievement!'}]}]},
+  {day:29,week:5,phase:3,milestone:null,title:'Bio weak spots · BGS full revision',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Weak spots — targeted fix',time:'8:30 – 9:30 PM',tasks:[{id:'d29b1',text:'Fix the 3 weak points identified on Day 28',tip:'Targeted revision is more effective than re-reading everything.'},{id:'d29b2',text:'Bio feels solid? Do a final mock recall',tip:''}]},
+    {id:'bgs',name:'BGS',icon:'🌍',color:'#f59e0b',chapter:'Full revision — all 5 chapters',time:'9:30 – 10:30 PM',tasks:[{id:'d29g1',text:'Quick revision: Ch1 + Ch3 key points',tip:'BGS is easy marks — refresh everything.'},{id:'d29g2',text:'Quick revision: Ch6 + Ch10 + Ch13',tip:''}]}]},
+  {day:30,week:5,phase:3,milestone:'🏆 30 DAYS DONE! Bio ✅ BGS ✅ Religion ✅ → NOW FOCUS: Physics + Chemistry + Math!',title:'FINAL DAY — Full revision + Next phase begins',subjects:[
+    {id:'bio',name:'Biology',icon:'🧬',color:'#f43f5e',chapter:'Final revision',time:'8:30 – 9:30 PM',tasks:[{id:'d30b1',text:'Final Biology check — all chapters reviewed',tip:"You've come so far!"},{id:'d30b2',text:'✅ Biology FULLY READY for exam 💪',tip:''}]},
+    {id:'rev',name:'All Subjects',icon:'🔁',color:'#22d3ee',chapter:'Final combined revision',time:'9:30 – 10:30 PM',tasks:[{id:'d30v1',text:'Religion final check — all 30 lessons',tip:''},{id:'d30v2',text:'BGS final check — all 5 chapters',tip:''},{id:'d30v3',text:'🎉 CELEBRATE + Plan Physics/Chemistry next',tip:'Day 31 onwards → Physics & Chemistry grind!'}]}]},
+];
+
+const SK='battle30_v4';
+let S={};
+try{S=JSON.parse(localStorage.getItem(SK))||{};}catch{S={};}
+const save=()=>localStorage.setItem(SK,JSON.stringify(S));
+const chk=id=>!!S[id];
+
+function updateCountdown(){
+  const exam=new Date('2026-06-23');
+  const diff=Math.max(0,Math.ceil((exam-new Date())/(864e5)));
+  ['cd-n','banner-days'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=diff;});
+  const he=document.getElementById('h-exam');if(he)he.textContent=diff;
+}
+function calcSubjPct(id){
+  let d=0,t=0;PLAN.forEach(day=>day.subjects.forEach(s=>{if(s.id===id)s.tasks.forEach(tk=>{t++;if(chk(tk.id))d++;});}));
+  return t?Math.round(d/t*100):0;
+}
+function calcTotal(){
+  let d=0,t=0;PLAN.forEach(day=>day.subjects.forEach(s=>s.tasks.forEach(tk=>{t++;if(chk(tk.id))d++;})));
+  return{d,t,pct:t?Math.round(d/t*100):0};
+}
+function countDoneDays(){return PLAN.filter(d=>d.subjects.every(s=>s.tasks.every(t=>chk(t.id)))).length;}
+function countDoneTasks(){let n=0;PLAN.forEach(d=>d.subjects.forEach(s=>s.tasks.forEach(t=>{if(chk(t.id))n++;})));return n;}
+function setEl(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+function setW(id,p){const el=document.getElementById(id);if(el)el.style.width=p+'%';}
+
+function updateStats(){
+  const bp=calcSubjPct('bio'),gp=calcSubjPct('bgs'),rp=calcSubjPct('rel');
+  const tot=calcTotal();
+  setW('pb-bio',bp);setEl('pp-bio',bp+'%');
+  setW('pb-bgs',gp);setEl('pp-bgs',gp+'%');
+  setW('pb-rel',rp);setEl('pp-rel',rp+'%');
+  setEl('m-pct',tot.pct+'%');
+  setEl('h-dd',countDoneDays());setEl('h-td',countDoneTasks());setEl('h-pct',tot.pct+'%');
+  setEl('banner-bio',bp+'%');setEl('banner-bgs',gp+'%');setEl('banner-rel',rp+'%');
+  setW('ebp-bio',bp);setEl('ebpp-bio',bp+'%');
+  setW('ebp-bgs',gp);setEl('ebpp-bgs',gp+'%');
+  setW('ebp-rel',rp);setEl('ebpp-rel',rp+'%');
+  setEl('bb-bio',bp+'%');setEl('bb-bgs',gp+'%');setEl('bb-rel',rp+'%');
+  const msgs=["Let's start! 💪","Building momentum 🔥","Halfway there! 🚀","Almost done!! ⚡","BEAST MODE 🏆"];
+  setEl('bb-msg',msgs[tot.pct>=90?4:tot.pct>=60?3:tot.pct>=35?2:tot.pct>=5?1:0]);
+  updateMilestones();refreshAllCards();
+}
+
+const MILESTONES=[
+  {day:5,text:'Bio Ch1',color:'#f43f5e',icon:'🧬'},{day:10,text:'Bio Ch2',color:'#f43f5e',icon:'🧬'},
+  {day:14,text:'BGS Done!',color:'#f59e0b',icon:'🌍'},{day:15,text:'Bio Ch3',color:'#f43f5e',icon:'🧬'},
+  {day:19,text:'Bio Ch7',color:'#f43f5e',icon:'🧬'},{day:24,text:'Bio Ch9',color:'#f43f5e',icon:'🧬'},
+  {day:28,text:'Rel Done!',color:'#a78bfa',icon:'☪️'},{day:30,text:'30 Days!',color:'#22d3ee',icon:'🏆'},
+];
+function isMR(m){const d=PLAN[m.day-1];return d.subjects.every(s=>s.tasks.every(t=>chk(t.id)));}
+function updateMilestones(){
+  const el=document.getElementById('milestones');if(!el)return;
+  el.innerHTML=MILESTONES.map(m=>{const r=isMR(m);
+    return`<div class="mstone${r?' reached':''}" style="--mc:${m.color}"><span>${m.icon}</span>D${m.day}: ${m.text}<span class="mstone-check">✓</span></div>`;
+  }).join('');
+}
+
+function isDone(d){return d.subjects.every(s=>s.tasks.every(t=>chk(t.id)));}
+function isPartial(d){return d.subjects.some(s=>s.tasks.some(t=>chk(t.id)));}
+function getDC(d){
+  const ids=d.subjects.map(s=>s.id);
+  if(ids.includes('rev'))return'#22d3ee';
+  if(ids.includes('bgs')&&ids.includes('rel'))return'linear-gradient(90deg,#f59e0b,#a78bfa)';
+  if(ids.includes('bgs'))return'#f59e0b';if(ids.includes('rel'))return'#a78bfa';return'#f43f5e';
+}
+function buildCalGrid(){
+  const grid=document.getElementById('cal-grid');if(!grid)return;
+  const nm={Biology:'Bio',Religion:'Rel','All Subjects':'Rev'};
+  grid.innerHTML=PLAN.map((d,i)=>{
+    const done=isDone(d),partial=isPartial(d);
+    const pills=d.subjects.map(s=>`<div class="day-pill" style="background:${s.color}1a;color:${s.color}">${s.icon} ${nm[s.name]||s.name}</div>`).join('');
+    const dotC=done?'#22c55e':partial?'#f59e0b':'rgba(255,255,255,0.1)';
+    const cls=['day-card',done?'done-day':'',partial&&!done?'active-day':''].filter(Boolean).join(' ');
+    return`<div class="${cls}" id="dc-${d.day}" style="--dc:${getDC(d)};animation-delay:${(i%7)*0.04}s" onclick="openDetail(${d.day})">
+      <div class="day-top"><div class="day-num">D${d.day}</div><div class="day-dot" style="background:${dotC}"></div></div>
+      <div class="day-pills">${pills}</div>
+      ${d.milestone?'<div class="day-milestone-dot">🎯</div>':''}
+      <div class="done-veil"><div class="done-veil-icon">✓</div></div>
+    </div>`;
+  }).join('');
+}
+function refreshAllCards(){
+  PLAN.forEach(d=>{
+    const el=document.getElementById('dc-'+d.day);if(!el)return;
+    const done=isDone(d),partial=isPartial(d);
+    el.classList.toggle('done-day',done);el.classList.toggle('active-day',partial&&!done);
+    const dot=el.querySelector('.day-dot');
+    if(dot)dot.style.background=done?'#22c55e':partial?'#f59e0b':'rgba(255,255,255,0.1)';
+  });
+}
+
+let currentDay=null;
+function openDetail(dayNum){
+  currentDay=dayNum;renderDetail(dayNum);
+  const panel=document.getElementById('detail-panel');
+  panel.classList.remove('hidden');
+  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),60);
+  document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('selected'));
+  const dc=document.getElementById('dc-'+dayNum);if(dc)dc.classList.add('selected');
+}
+function closeDetail(){
+  document.getElementById('detail-panel').classList.add('hidden');
+  document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('selected'));
+  currentDay=null;
+}
+function navDay(dir){if(!currentDay)return;const n=currentDay+dir;if(n>=1&&n<=30)openDetail(n);}
+function renderDetail(dayNum){
+  const d=PLAN[dayNum-1];
+  const wk=['','Week 1','Week 2','Week 3','Week 4','Week 5'];
+  const pl=d.day<=14?'Phase 1: Bio + BGS':d.day<=28?'Phase 2: Bio + Religion':'Phase 3: Revision';
+  setEl('dp-num',String(d.day).padStart(2,'0'));
+  setEl('dp-eyebrow',`Day ${d.day} · Phase ${d.phase}`);
+  setEl('dp-title',d.title);
+  setEl('dp-week',`${wk[d.week]} · ${pl}`);
+  const mb=document.getElementById('dp-milestone-banner');
+  if(mb)mb.innerHTML=d.milestone?`<div class="milestone-banner"><span class="mb-icon">🎯</span><span class="mb-text">${d.milestone}</span></div>`:'';
+  const grid=document.getElementById('dp-grid');if(!grid)return;
+  grid.innerHTML=d.subjects.map(s=>{
+    const dc=s.tasks.filter(t=>chk(t.id)).length;
+    const tasks=s.tasks.map(t=>`
+      <div class="tb-task${chk(t.id)?' done':''}" id="tbt-${t.id}" onclick="toggleTask('${t.id}','${s.color}',${dayNum})" style="--tc:${s.color}">
+        <div class="tb-check">${svgChk()}</div>
+        <div><div class="tb-task-text">${t.text}</div>${t.tip?`<div class="tb-task-tip">💡 ${t.tip}</div>`:''}</div>
+      </div>`).join('');
+    return`<div class="task-block" style="--tc:${s.color}">
+      <div class="tb-head"><div class="tb-icon">${s.icon}</div>
+        <div class="tb-info"><div class="tb-name">${s.name}</div><div class="tb-meta">${s.chapter}</div></div>
+        <div class="tb-badge" id="badge-${s.id}-${dayNum}">${dc}/${s.tasks.length} done</div>
+      </div>
+      <div class="tb-tasks">${tasks}</div>
+      <div class="tb-time"><div class="tb-time-pip"></div>${s.time}</div>
+    </div>`;
+  }).join('');
+  const prev=document.getElementById('dp-prev'),next=document.getElementById('dp-next');
+  if(prev)prev.disabled=dayNum<=1;if(next)next.disabled=dayNum>=30;
+}
+function toggleTask(id,color,dayNum){
+  S[id]=!S[id];save();
+  const el=document.getElementById('tbt-'+id);
+  if(el){S[id]?el.classList.add('done'):el.classList.remove('done');}
+  const d=PLAN[dayNum-1];
+  d.subjects.forEach(s=>{if(s.tasks.some(t=>t.id===id)){
+    const dc=s.tasks.filter(t=>chk(t.id)).length;
+    const badge=document.getElementById(`badge-${s.id}-${dayNum}`);
+    if(badge)badge.textContent=`${dc}/${s.tasks.length} done`;
+  }});
+  updateStats();if(S[id])showToast('Task completed ✓',color);
+}
+function svgChk(){return`<svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;}
+
+let tt;
+function showToast(msg,color){
+  const t=document.getElementById('toast'),p=document.getElementById('t-pip'),m=document.getElementById('t-msg');
+  if(!t||!p||!m)return;
+  m.textContent=msg;p.style.background=color;t.style.borderColor=color+'50';t.style.boxShadow=`0 0 20px -8px ${color}`;
+  t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+buildCalGrid();updateCountdown();updateStats();
+</script>
+</body>
+</html>
